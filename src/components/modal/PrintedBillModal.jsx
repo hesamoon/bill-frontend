@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { e2p, sp } from "../../helpers/helper";
 
 // logo
-import logo from "../../assets/farabar-logo.png"
+import logo from "../../assets/farabar-logo.png";
 
 function PrintedBillModal({ data, onClose }) {
   const {
@@ -437,7 +437,9 @@ function PrintedBillModal({ data, onClose }) {
                         (accumulator, currentValue) =>
                           accumulator + +currentValue.replaceAll(",", ""),
                         0
-                      )
+                      ) -
+                        +priceInfo.perKilo.replaceAll(",", "") +
+                        +priceInfo.perKilo.replaceAll(",", "") * productInfo.count
                     )}
                   </h5>
                 </div>

@@ -12,7 +12,10 @@ import { getUser } from "../services/user";
 // background image
 import bgImg from "../assets/air-top.png";
 // logo
-import logo from "../assets/farabar-logo.png"
+import logo from "../assets/farabar-logo.png";
+
+// utils
+import { setCookie } from "../utilities/cookie";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -22,6 +25,8 @@ function LoginPage() {
     mutationFn: getUser,
     onSuccess: (data) => {
       if (data.data?.status === "Success") {
+        console.log(data)
+        setCookie(data.data?.token)
         toast.success("خوش آمدید.");
         navigate("/");
       } else {
@@ -83,7 +88,11 @@ function LoginPage() {
           <h2 className="text-center font-bold text-lg">
             شرکت حمل و نقل هواپیمایی فرابار پرواز
           </h2>
-          <img className="absolute top-0 left-0 w-16 h-16" src={logo} alt="logo" />
+          <img
+            className="absolute top-0 left-0 w-16 h-16"
+            src={logo}
+            alt="logo"
+          />
         </div>
         <form
           onSubmit={submitHandler}
