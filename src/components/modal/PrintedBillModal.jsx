@@ -70,24 +70,24 @@ function PrintedBillModal({ data, onClose }) {
     >
       <div
         ref={printRef}
-        className="flex flex-col bg-white w-[630px] h-[890px] rounded-lg p-4"
+        className="flex flex-col bg-white w-[559px] h-[794px] rounded-lg p-4"
       >
         <div className="border-4 border-black w-full h-full divide-y-4 divide-black flex flex-col">
           {/* header */}
           <div className="flex items-center justify-between p-2">
             <div>
-              <div className="flex items-center justify-center w-16 h-16">
+              <div className="flex items-center justify-center w-14 h-14">
                 <img src={logo} alt="logo" />
               </div>
             </div>
 
-            <div className="text-2xl font-semibold text-black">
+            <div className="text-[22px] font-semibold text-black">
               شرکت حمل و نقل هوایی فرابار پرواز
             </div>
 
             <div className="">
-              <span className="text-xs text-low_important">شماره بارنامه:</span>
-              <h5 className="text-black text-lg font-semibold -mt-1">
+              <span className="text-[10px] text-low_important">شماره بارنامه:</span>
+              <h5 className="text-black text-sm font-semibold -mt-1">
                 {billNumber}
               </h5>
             </div>
@@ -97,20 +97,20 @@ function PrintedBillModal({ data, onClose }) {
           <div className="grid grid-cols-2 divide-x-4 divide-x-reverse divide-black">
             {/* origin */}
             <div className="p-2 relative">
-              <span className="absolute top-3 right-2 text-black text-sm">
+              <span className="absolute top-3 right-2 text-black text-xs">
                 مبدا:
               </span>
-              <h3 className="text-center text-black font-semibold text-base">
+              <h3 className="text-center text-black font-semibold text-sm">
                 {senderInfo.address.state?.name}
               </h3>
             </div>
 
             {/* destination */}
             <div className="p-2 relative">
-              <span className="absolute top-3 right-2 text-black text-sm">
+              <span className="absolute top-3 right-2 text-black text-xs">
                 مقصد:
               </span>
-              <h3 className="text-center text-black font-semibold text-base">
+              <h3 className="text-center text-black font-semibold text-sm">
                 {receiverInfo.address.state?.name}
               </h3>
             </div>
@@ -119,15 +119,15 @@ function PrintedBillModal({ data, onClose }) {
           {/* sender / receiver info */}
           <div className="grid grid-cols-2 divide-x-4 divide-x-reverse divide-black">
             {/* sender info */}
-            <div className="p-2 space-y-2">
+            <div className="p-2 space-y-1">
               <div className="flex items-center gap-4">
-                <span className="text-black text-sm">فرستنده:</span>
-                <h3 className="font-semibold">{senderInfo.name}</h3>
+                <span className="text-black text-xs">فرستنده:</span>
+                <h3 className="font-semibold text-sm">{senderInfo.name}</h3>
               </div>
 
               <div className="flex items-center gap-4">
-                <span className="text-black text-sm">تلفن:</span>
-                <h3 className="font-semibold">{senderInfo.phone}</h3>
+                <span className="text-black text-xs">تلفن:</span>
+                <h3 className="font-semibold text-sm">{senderInfo.phone}</h3>
               </div>
 
               <div className="flex items-center justify-end">
@@ -135,22 +135,22 @@ function PrintedBillModal({ data, onClose }) {
               </div>
 
               <div className="flex items-start gap-4">
-                <span className="text-black text-sm">نشانی:</span>
-                <h3 className="font-semibold">{`${senderInfo.address.state?.name}, ${senderInfo.address.city?.name}, ${senderInfo.address.street}, ${senderInfo.address.alley}, ${senderInfo.address.postalCode}`}</h3>
+                <span className="text-black text-xs">نشانی:</span>
+                <h3 className="font-semibold text-sm">{`${senderInfo.address.state?.name}, ${senderInfo.address.city?.name}, ${senderInfo.address.street}, ${senderInfo.address.alley}, ${senderInfo.address.postalCode}`}</h3>
               </div>
-              <h3 className="font-semibold text-sm">{senderInfo.desc}</h3>
+              <h3 className="font-semibold text-[10px]">{senderInfo.desc}</h3>
             </div>
 
             {/* receiver info */}
-            <div className="p-2 space-y-2">
+            <div className="p-2 space-y-1">
               <div className="flex items-center gap-4">
-                <span className="text-black text-sm">فرستنده:</span>
-                <h3 className="font-semibold">{receiverInfo.name}</h3>
+                <span className="text-black text-xs">فرستنده:</span>
+                <h3 className="font-semibold text-sm">{receiverInfo.name}</h3>
               </div>
 
               <div className="flex items-center gap-4">
-                <span className="text-black text-sm">تلفن:</span>
-                <h3 className="font-semibold">{receiverInfo.phone}</h3>
+                <span className="text-black text-xs">تلفن:</span>
+                <h3 className="font-semibold text-sm">{receiverInfo.phone}</h3>
               </div>
 
               <div className="flex items-center justify-end">
@@ -158,10 +158,10 @@ function PrintedBillModal({ data, onClose }) {
               </div>
 
               <div className="flex items-start gap-4">
-                <span className="text-black text-sm">نشانی:</span>
-                <h3 className="font-semibold">{`${receiverInfo.address.state?.name}, ${receiverInfo.address.city?.name}, ${receiverInfo.address.street}, ${receiverInfo.address.alley}, ${receiverInfo.address.postalCode}`}</h3>
+                <span className="text-black text-xs">نشانی:</span>
+                <h3 className="font-semibold text-sm">{`${receiverInfo.address.state?.name}, ${receiverInfo.address.city?.name}, ${receiverInfo.address.street}, ${receiverInfo.address.alley}, ${receiverInfo.address.postalCode}`}</h3>
               </div>
-              <h3 className="font-semibold text-sm">{receiverInfo.desc}</h3>
+              <h3 className="font-semibold text-[10px]">{receiverInfo.desc}</h3>
             </div>
           </div>
 
@@ -203,7 +203,7 @@ function PrintedBillModal({ data, onClose }) {
               {/* weight */}
               <div className="divide-y-4 text-center divide-black">
                 <h4 className="whitespace-nowrap text-xs text-tx_primary font-semibold p-1">
-                  وزن <span className="text-[10px]">(کیلوگرم)</span>
+                  وزن <span className="text-[8px]">(کیلوگرم)</span>
                 </h4>
                 <h3 className="text-base font-semibold text-tx_primary p-1">
                   {productInfo.weight}
@@ -227,7 +227,7 @@ function PrintedBillModal({ data, onClose }) {
             {/* some notes and details */}
             <div className="divide-y-4 divide-black">
               {/* products content */}
-              <div className="h-1/4 overflow-y-auto no-scrollbar">
+              <div className="h-1/5 overflow-y-auto no-scrollbar">
                 <span className="text-[10px] pr-2 text-low_important">
                   محتویات بنا به اظهار فرستنده
                 </span>
@@ -238,7 +238,7 @@ function PrintedBillModal({ data, onClose }) {
 
               {/* note */}
               <div className="">
-                <h3 className="p-2 text-center text-xs font-semibold break-words">
+                <h3 className="p-2 text-center text-[11px] font-semibold break-words">
                   فرستنده متعهد میگردد این محموله فاقد کالای خطرناک میباشد و هر
                   گونه کشف فساد به عهده ی صاحب کالا میباشد و در صورت بروز هر
                   گونه خسارت مسولیت به عهدهی فرستنده میباشد.
@@ -246,7 +246,7 @@ function PrintedBillModal({ data, onClose }) {
               </div>
 
               {/* Signatures */}
-              <div className="grid grid-cols-2 divide-x-4 divide-x-reverse divide-black h-[29.5%]">
+              <div className="grid grid-cols-2 divide-x-4 divide-x-reverse divide-black h-[24%]">
                 <div className="">
                   <span className="text-[10px] pr-2 text-tx_primary">
                     امضا فرستنده:
@@ -286,29 +286,14 @@ function PrintedBillModal({ data, onClose }) {
 
             {/* prices / exporter name */}
             <div className="divide-y-4 divide-black flex flex-col">
-              {/* per kilo */}
-              <div className="grid grid-cols-2 divide-x-4 divide-x-reverse divide-black">
-                <div className="text-start text-sm p-1">
-                  نرخ به ازای هر کیلوگرم
-                </div>
-                <div className="relative p-1">
-                  <span className="text-low_important text-[10px] absolute top-2 left-1">
-                    ريال
-                  </span>
-                  <h5 className="text-base text-tx_primary font-semibold text-center">
-                    {sp(+priceInfo.perKilo.replaceAll(",", ""))}
-                  </h5>
-                </div>
-              </div>
-
               {/* shipping */}
               <div className="grid grid-cols-2 divide-x-4 divide-x-reverse divide-black">
-                <div className="text-start text-sm p-1">هزینه حمل بار</div>
+                <div className="text-start text-xs p-1">هزینه حمل بار</div>
                 <div className="relative p-1">
                   <span className="text-low_important text-[10px] absolute top-2 left-1">
                     ريال
                   </span>
-                  <h5 className="text-base text-tx_primary font-semibold text-center">
+                  <h5 className="text-sm text-tx_primary font-semibold text-center">
                     {sp(+priceInfo.shipping.replaceAll(",", ""))}
                   </h5>
                 </div>
@@ -316,12 +301,12 @@ function PrintedBillModal({ data, onClose }) {
 
               {/* service */}
               <div className="grid grid-cols-2 divide-x-4 divide-x-reverse divide-black">
-                <div className="text-start text-sm p-1">هزینه خدمات</div>
+                <div className="text-start text-xs p-1">هزینه خدمات</div>
                 <div className="relative p-1">
                   <span className="text-low_important text-[10px] absolute top-2 left-1">
                     ريال
                   </span>
-                  <h5 className="text-base text-tx_primary font-semibold text-center">
+                  <h5 className="text-sm text-tx_primary font-semibold text-center">
                     {sp(+priceInfo.service.replaceAll(",", ""))}
                   </h5>
                 </div>
@@ -329,12 +314,12 @@ function PrintedBillModal({ data, onClose }) {
 
               {/* collect */}
               <div className="grid grid-cols-2 divide-x-4 divide-x-reverse divide-black">
-                <div className="text-start text-sm p-1">هزینه جمع آوری</div>
+                <div className="text-start text-xs p-1">هزینه جمع آوری</div>
                 <div className="relative p-1">
                   <span className="text-low_important text-[10px] absolute top-2 left-1">
                     ريال
                   </span>
-                  <h5 className="text-base text-tx_primary font-semibold text-center">
+                  <h5 className="text-sm text-tx_primary font-semibold text-center">
                     {sp(+priceInfo.collect.replaceAll(",", ""))}
                   </h5>
                 </div>
@@ -342,12 +327,12 @@ function PrintedBillModal({ data, onClose }) {
 
               {/* packaging */}
               <div className="grid grid-cols-2 divide-x-4 divide-x-reverse divide-black">
-                <div className="text-start text-sm p-1">هزینه بسته بندی</div>
+                <div className="text-start text-xs p-1">هزینه بسته بندی</div>
                 <div className="relative p-1">
                   <span className="text-low_important text-[10px] absolute top-2 left-1">
                     ريال
                   </span>
-                  <h5 className="text-base text-tx_primary font-semibold text-center">
+                  <h5 className="text-sm text-tx_primary font-semibold text-center">
                     {sp(+priceInfo.packaging.replaceAll(",", ""))}
                   </h5>
                 </div>
@@ -355,14 +340,14 @@ function PrintedBillModal({ data, onClose }) {
 
               {/* stamp */}
               <div className="grid grid-cols-2 divide-x-4 divide-x-reverse divide-black">
-                <div className="text-start text-sm p-1">
+                <div className="text-start text-xs p-1">
                   هزینه تمبر و بارنامه
                 </div>
                 <div className="relative p-1">
                   <span className="text-low_important text-[10px] absolute top-2 left-1">
                     ريال
                   </span>
-                  <h5 className="text-base text-tx_primary font-semibold text-center">
+                  <h5 className="text-sm text-tx_primary font-semibold text-center">
                     {sp(+priceInfo.stamp.replaceAll(",", ""))}
                   </h5>
                 </div>
@@ -370,12 +355,12 @@ function PrintedBillModal({ data, onClose }) {
 
               {/* representative */}
               <div className="grid grid-cols-2 divide-x-4 divide-x-reverse divide-black">
-                <div className="text-start text-sm p-1">حق نمایندگی</div>
+                <div className="text-start text-xs p-1">حق نمایندگی</div>
                 <div className="relative p-1">
                   <span className="text-low_important text-[10px] absolute top-2 left-1">
                     ريال
                   </span>
-                  <h5 className="text-base text-tx_primary font-semibold text-center">
+                  <h5 className="text-sm text-tx_primary font-semibold text-center">
                     {sp(+priceInfo.representative.replaceAll(",", ""))}
                   </h5>
                 </div>
@@ -383,12 +368,12 @@ function PrintedBillModal({ data, onClose }) {
 
               {/* dispensation */}
               <div className="grid grid-cols-2 divide-x-4 divide-x-reverse divide-black">
-                <div className="text-start text-sm p-1">هزینه توزیع</div>
+                <div className="text-start text-xs p-1">هزینه توزیع</div>
                 <div className="relative p-1">
                   <span className="text-low_important text-[10px] absolute top-2 left-1">
                     ريال
                   </span>
-                  <h5 className="text-base text-tx_primary font-semibold text-center">
+                  <h5 className="text-sm text-tx_primary font-semibold text-center">
                     {sp(+priceInfo.dispensation.replaceAll(",", ""))}
                   </h5>
                 </div>
@@ -396,12 +381,12 @@ function PrintedBillModal({ data, onClose }) {
 
               {/* xry */}
               <div className="grid grid-cols-2 divide-x-4 divide-x-reverse divide-black">
-                <div className="text-start text-sm p-1">هزینه ایکس ری</div>
+                <div className="text-start text-xs p-1">هزینه ایکس ری</div>
                 <div className="relative p-1">
                   <span className="text-low_important text-[10px] absolute top-2 left-1">
                     ريال
                   </span>
-                  <h5 className="text-base text-tx_primary font-semibold text-center">
+                  <h5 className="text-sm text-tx_primary font-semibold text-center">
                     {sp(+priceInfo.xry.replaceAll(",", ""))}
                   </h5>
                 </div>
@@ -409,14 +394,14 @@ function PrintedBillModal({ data, onClose }) {
 
               {/* tax */}
               <div className="grid grid-cols-2 divide-x-4 divide-x-reverse divide-black">
-                <div className="text-start text-sm p-1">
+                <div className="text-start text-xs p-1">
                   مالیات بر ارزش افزوده
                 </div>
                 <div className="relative p-1">
                   <span className="text-low_important text-[10px] absolute top-2 left-1">
                     ريال
                   </span>
-                  <h5 className="text-base text-tx_primary font-semibold text-center">
+                  <h5 className="text-sm text-tx_primary font-semibold text-center">
                     {sp(+priceInfo.tax.replaceAll(",", ""))}
                   </h5>
                 </div>
@@ -424,7 +409,7 @@ function PrintedBillModal({ data, onClose }) {
 
               {/* total price */}
               <div className="grid grid-cols-2 divide-x-4 divide-x-reverse divide-black">
-                <div className="font-bold text-start text-base p-1">
+                <div className="font-bold text-start text-sm p-1">
                   مبلغ کل
                 </div>
                 <div className="relative p-1">
@@ -437,9 +422,7 @@ function PrintedBillModal({ data, onClose }) {
                         (accumulator, currentValue) =>
                           accumulator + +currentValue.replaceAll(",", ""),
                         0
-                      ) -
-                        +priceInfo.perKilo.replaceAll(",", "") +
-                        +priceInfo.perKilo.replaceAll(",", "") * productInfo.count
+                      )
                     )}
                   </h5>
                 </div>
@@ -447,9 +430,9 @@ function PrintedBillModal({ data, onClose }) {
 
               {/* pay method */}
               <div className="grid grid-cols-2 divide-x-4 divide-x-reverse divide-black">
-                <div className="text-start text-sm p-1">نوع پرداخت</div>
+                <div className="text-start text-xs p-1">نوع پرداخت</div>
                 <div className="p-1">
-                  <h5 className="text-base text-tx_primary font-semibold text-center">
+                  <h5 className="text-sm text-tx_primary font-semibold text-center">
                     {payMethod}
                   </h5>
                 </div>
@@ -466,7 +449,7 @@ function PrintedBillModal({ data, onClose }) {
                   </span>
                 </div>
 
-                <h5 className="font-semibold text-tx_primary text-end p-2">
+                <h5 className="font-semibold text-sm text-tx_primary text-end p-2">
                   {e2p(timestamp.time)} - {timestamp.date}
                 </h5>
               </div>
@@ -474,6 +457,7 @@ function PrintedBillModal({ data, onClose }) {
           </div>
         </div>
       </div>
+      
       <div className="p-4">
         {/* Print Button */}
         <button

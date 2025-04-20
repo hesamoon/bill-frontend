@@ -1,5 +1,11 @@
 /* eslint-disable react/prop-types */
-function Button({ value, onClick, disable, onlyBorder = false }) {
+function Button({
+  value,
+  onClick,
+  disable,
+  onlyBorder = false,
+  withoutLoader = false,
+}) {
   return (
     <button
       className={`${
@@ -13,7 +19,7 @@ function Button({ value, onClick, disable, onlyBorder = false }) {
       onClick={onClick}
     >
       {value}
-      {disable ? (
+      {!withoutLoader && disable ? (
         <svg
           width="20"
           height="20"

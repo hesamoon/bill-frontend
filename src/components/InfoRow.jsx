@@ -2,7 +2,7 @@ import { sp } from "../helpers/helper";
 
 /* eslint-disable react/prop-types */
 function InfoRow({ info, showBillHandler }) {
-  const { billNumber, senderInfo, receiverInfo, priceInfo } = info;
+  const { billNumber, senderInfo, receiverInfo, priceInfo, productInfo } = info;
 
   return (
     <div className="grid grid-cols-9 rtl">

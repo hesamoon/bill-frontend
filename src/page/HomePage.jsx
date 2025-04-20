@@ -7,6 +7,7 @@ import InfoRow from "../components/InfoRow";
 import SearchBox from "../components/SearchBox";
 import NewBillModal from "../components/modal/NewBillModal";
 import PrintedBillModal from "../components/modal/PrintedBillModal";
+import ExistBillListModal from "../components/modal/ExistBillListModal.jsx";
 
 // services
 import { getBills } from "../services/user.js";
@@ -19,16 +20,68 @@ function HomePage() {
   });
 
   const [searchVal, setSearchVal] = useState("");
-  const [filterType, setFilterType] = useState(0);
+  const [filterType, setFilterType] = useState(1);
   const [filtredList, setFiltredList] = useState([]);
   const [billData, setBillData] = useState(null);
+  const [billInfoData, setBillInfoData] = useState({
+    payMethod: "",
+    exporterName: "",
+    senderInfo: {
+      name: "",
+      phone: "",
+      address: {
+        state: null,
+        city: null,
+        street: "",
+        alley: "",
+        postalCode: "",
+      },
+      desc: "",
+    },
+    receiverInfo: {
+      name: "",
+      phone: "",
+      address: {
+        state: null,
+        city: null,
+        street: "",
+        alley: "",
+        postalCode: "",
+      },
+      desc: "",
+    },
+    productInfo: {
+      productType: "",
+      weight: "",
+      culcWeight: "",
+      count: "",
+      dim: { w: "", h: "", l: "" },
+      content: "",
+    },
+    priceInfo: {
+      shipping: "",
+      service: "",
+      collect: "",
+      packaging: "",
+      stamp: "",
+      xry: "",
+      representative: "",
+      dispensation: "",
+      tax: "",
+    },
+  });
   const [openAddBillModal, setOpenAddBillModal] = useState(false);
   const [openPrintBillModal, setOpenPrintBillModal] = useState(false);
+  const [openExistBillModal, setOpenExistBillModal] = useState(false);
+
+  const changeScrollBarState = (state) => {
+    document.body.style.overflow = state ? "hidden" : "";
+  };
 
   useEffect(() => {
     if (searchVal) {
       const newArr = billsData?.data?.filter((bill) =>
-        `${bill.billNumber}`.includes(searchVal)
+        `${bill.billNumber} - ${bill.senderInfo.name} - ${bill.senderInfo.phone}`.includes(searchVal)
       );
       setFiltredList([...newArr]);
     } else {
@@ -53,20 +106,35 @@ function HomePage() {
     }
   }, [billsData]);
 
+  useEffect(() => {
+    if (openAddBillModal || openPrintBillModal || openExistBillModal) {
+      changeScrollBarState(true);
+    } else {
+      changeScrollBarState(false);
+    }
+  }, [openAddBillModal, openPrintBillModal, openExistBillModal]);
+
   return (
     <>
       <div className="py-8 px-16">
         {/* search bar - add bill */}
         <div className="flex items-center gap-6">
-          <SearchBox
-            value={searchVal}
-            onChange={setSearchVal}
-            baseOn={filterType}
-          />
+          <div className="w-1/3">
+            <SearchBox
+              value={searchVal}
+              onChange={setSearchVal}
+              baseOn={filterType}
+            />
+          </div>
 
           <Button
             value="بارنامه جدید"
             onClick={() => setOpenAddBillModal(true)}
+          />
+
+          <Button
+            value="استفاده از بارنامه موجود"
+            onClick={() => setOpenExistBillModal(true)}
           />
         </div>
 
@@ -124,7 +192,70 @@ function HomePage() {
         <NewBillModal
           data={billData}
           setData={setBillData}
-          onClose={() => setOpenAddBillModal(false)}
+          billInfoData={billInfoData}
+          setBillInfoData={setBillInfoData}
+          onClose={() => {
+            setOpenAddBillModal(false);
+            setBillInfoData({
+              payMethod: "",
+              exporterName: "",
+              senderInfo: {
+                name: "",
+                phone: "",
+                address: {
+                  state: null,
+                  city: null,
+                  street: "",
+                  alley: "",
+                  postalCode: "",
+                },
+                desc: "",
+              },
+              receiverInfo: {
+                name: "",
+                phone: "",
+                address: {
+                  state: null,
+                  city: null,
+                  street: "",
+                  alley: "",
+                  postalCode: "",
+                },
+                desc: "",
+              },
+              productInfo: {
+                productType: "",
+                weight: "",
+                culcWeight: "",
+                count: "",
+                dim: { w: "", h: "", l: "" },
+                content: "",
+              },
+              priceInfo: {
+                shipping: "",
+                service: "",
+                collect: "",
+                packaging: "",
+                stamp: "",
+                xry: "",
+                representative: "",
+                dispensation: "",
+                tax: "",
+              },
+            });
+          }}
+        />
+      )}
+
+      {openExistBillModal && (
+        <ExistBillListModal
+          data={billsData?.data}
+          clickHandler={(selectedBill) => {
+            setBillInfoData({ ...selectedBill });
+            setOpenExistBillModal(false);
+            setOpenAddBillModal(true);
+          }}
+          onClose={() => setOpenExistBillModal(false)}
         />
       )}
 

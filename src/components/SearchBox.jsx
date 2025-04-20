@@ -5,7 +5,7 @@ import searchIcon from "../assets/search.svg";
 
 function SearchBox({ value, onChange, baseOn }) {
   return (
-    <div className="flex items-center gap-2 border border-outline rounded-xl p-2 w-1/3">
+    <div className="flex items-center gap-2 border border-outline rounded-xl p-2">
       <img className="w-7 h-7" src={searchIcon} alt="search" />
 
       <input

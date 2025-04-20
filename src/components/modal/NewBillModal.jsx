@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 // icons
@@ -17,9 +18,14 @@ import { steps } from "../../constants/data";
 
 // services
 import { createBill } from "../../services/user";
-import toast from "react-hot-toast";
 
-function NewBillModal({ data, setData, onClose }) {
+function NewBillModal({
+  data,
+  setData,
+  billInfoData,
+  setBillInfoData,
+  onClose,
+}) {
   const queryClient = useQueryClient();
 
   // POST
@@ -29,6 +35,54 @@ function NewBillModal({ data, setData, onClose }) {
       onSuccess: (data) => {
         queryClient.invalidateQueries(["bills"]);
         toast.success(`بارنامه به شماره ${data.data.billNumber} ایجاد گردید`);
+        setBillInfoData({
+          payMethod: "",
+          exporterName: "",
+          senderInfo: {
+            name: "",
+            phone: "",
+            address: {
+              state: null,
+              city: null,
+              street: "",
+              alley: "",
+              postalCode: "",
+            },
+            desc: "",
+          },
+          receiverInfo: {
+            name: "",
+            phone: "",
+            address: {
+              state: null,
+              city: null,
+              street: "",
+              alley: "",
+              postalCode: "",
+            },
+            desc: "",
+          },
+          productInfo: {
+            productType: "",
+            weight: "",
+            culcWeight: "",
+            count: "",
+            dim: { w: "", h: "", l: "" },
+            content: "",
+          },
+          priceInfo: {
+            perKilo: "",
+            shipping: "",
+            service: "",
+            collect: "",
+            packaging: "",
+            stamp: "",
+            xry: "",
+            representative: "",
+            dispensation: "",
+            tax: "",
+          },
+        });
         setData({ ...data.data });
       },
       onError: (error) => {
@@ -37,61 +91,13 @@ function NewBillModal({ data, setData, onClose }) {
     });
 
   const [currStep, setCurrStep] = useState(steps[0]);
-  const [billInfoData, setBillInfoData] = useState({
-    payMethod: "",
-    exporterName: "",
-    senderInfo: {
-      name: "",
-      phone: "",
-      address: {
-        state: null,
-        city: null,
-        street: "",
-        alley: "",
-        postalCode: "",
-      },
-      desc: "",
-    },
-    receiverInfo: {
-      name: "",
-      phone: "",
-      address: {
-        state: null,
-        city: null,
-        street: "",
-        alley: "",
-        postalCode: "",
-      },
-      desc: "",
-    },
-    productInfo: {
-      productType: "",
-      weight: "",
-      culcWeight: "",
-      count: "",
-      dim: { w: "", h: "", l: "" },
-      content: "",
-    },
-    priceInfo: {
-      perKilo: "",
-      shipping: "",
-      service: "",
-      collect: "",
-      packaging: "",
-      stamp: "",
-      xry: "",
-      representative: "",
-      dispensation: "",
-      tax: "",
-    },
-  });
 
-  const handleClose = (event) => {
-    if (event.target.id === "wrapper") {
-      onClose();
-      return;
-    }
-  };
+  // const handleClose = (event) => {
+  //   if (event.target.id === "wrapper") {
+  //     onClose();
+  //     return;
+  //   }
+  // };
 
   const clickHandler = (op) => {
     if (op === "+") {
@@ -156,7 +162,7 @@ function NewBillModal({ data, setData, onClose }) {
     <div
       className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-start overflow-auto no-scrollbar scroll-smooth z-[999] py-10"
       id="wrapper"
-      onClick={handleClose}
+      // onClick={handleClose}
     >
       <div className="flex flex-col bg-white rounded-lg divide-y-2">
         {/* Header */}

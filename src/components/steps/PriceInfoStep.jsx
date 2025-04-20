@@ -22,22 +22,6 @@ function PriceInfoStep({ billInfo, setBillInfo }) {
   return (
     <div className="p-6 space-y-8">
       <div className="grid grid-cols-2 gap-4">
-        {/* per kilo */}
-        <div className="space-y-1 relative">
-          <h5 className="text-xs text-low_important">نرخ به کیلو</h5>
-          <input
-            className="ltr text-center outline-none border border-outline rounded-lg p-2 text-sm w-full placeholder:text-low_important"
-            type="text" // Use text to allow comma formatting
-            inputMode="numeric" // Mobile keyboard shows numbers
-            value={billInfo.priceInfo.perKilo}
-            onChange={(e) => handleChange(e, "perKilo")}
-            placeholder="10.000"
-          />
-          <h5 className="absolute top-6 left-2 text-xs text-low_important">
-            ریال
-          </h5>
-        </div>
-
         {/* shipping */}
         <div className="space-y-1 relative">
           <h5 className="text-xs text-low_important">حمل بار</h5>
@@ -181,7 +165,9 @@ function PriceInfoStep({ billInfo, setBillInfo }) {
             ریال
           </h5>
         </div>
-
+      </div>
+      
+      <div className="grid grid-cols-2 gap-4">
         {/* payment method */}
         <div className="space-y-1 relative">
           <h5 className="text-xs text-low_important">نوع پرداخت</h5>

@@ -6,6 +6,7 @@ export default {
       colors: {
         outline: "#BCBFC2",
         primary: "#176FCF",
+        hover_primary: "#176FCF1a",
         tx_primary: "#292D32",
         low_important: "#BCBFC2",
         unselected: "#D9D9D9",
