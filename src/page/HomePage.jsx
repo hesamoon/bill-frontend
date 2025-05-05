@@ -7,10 +7,12 @@ import InfoRow from "../components/InfoRow";
 import SearchBox from "../components/SearchBox";
 import NewBillModal from "../components/modal/NewBillModal";
 import PrintedBillModal from "../components/modal/PrintedBillModal";
+import PreviewBillModal from "../components/modal/PreviewBillModal.jsx";
 import ExistBillListModal from "../components/modal/ExistBillListModal.jsx";
 
 // services
 import { getBills } from "../services/user.js";
+import { steps } from "../constants/data.js";
 
 function HomePage() {
   // GET
@@ -73,6 +75,9 @@ function HomePage() {
   const [openAddBillModal, setOpenAddBillModal] = useState(false);
   const [openPrintBillModal, setOpenPrintBillModal] = useState(false);
   const [openExistBillModal, setOpenExistBillModal] = useState(false);
+  const [openPreviewBillModal, setOpenPreviewBillModal] = useState(false);
+
+  const [initStep, setInitStep] = useState(steps[0]);
 
   const changeScrollBarState = (state) => {
     document.body.style.overflow = state ? "hidden" : "";
@@ -81,7 +86,9 @@ function HomePage() {
   useEffect(() => {
     if (searchVal) {
       const newArr = billsData?.data?.filter((bill) =>
-        `${bill.billNumber} - ${bill.senderInfo.name} - ${bill.senderInfo.phone}`.includes(searchVal)
+        `${bill.billNumber} - ${bill.senderInfo.name} - ${bill.senderInfo.phone}`.includes(
+          searchVal
+        )
       );
       setFiltredList([...newArr]);
     } else {
@@ -129,11 +136,13 @@ function HomePage() {
 
           <Button
             value="بارنامه جدید"
+            type="filled"
             onClick={() => setOpenAddBillModal(true)}
           />
 
           <Button
             value="استفاده از بارنامه موجود"
+            type="filled"
             onClick={() => setOpenExistBillModal(true)}
           />
         </div>
@@ -194,8 +203,14 @@ function HomePage() {
           setData={setBillData}
           billInfoData={billInfoData}
           setBillInfoData={setBillInfoData}
+          initStep={initStep}
+          previewClickHandler={() => {
+            setOpenAddBillModal(false);
+            setOpenPreviewBillModal(true);
+          }}
           onClose={() => {
             setOpenAddBillModal(false);
+            setInitStep(steps[0]);
             setBillInfoData({
               payMethod: "",
               exporterName: "",
@@ -243,6 +258,20 @@ function HomePage() {
                 tax: "",
               },
             });
+          }}
+        />
+      )}
+
+      {openPreviewBillModal && (
+        <PreviewBillModal
+          data={billInfoData}
+          clickHandler={() => {
+            setOpenPreviewBillModal(false);
+            setInitStep({
+              id: 3,
+              value: "هزینه ها",
+            });
+            setOpenAddBillModal(true);
           }}
         />
       )}
