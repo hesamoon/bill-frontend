@@ -122,6 +122,7 @@ function ExistBillListModal({ data, clickHandler, onClose }) {
             value="تایید"
             disable={!selectedBill}
             withoutLoader
+            type="filled"
             onClick={() => clickHandler({ ...selectedBill })}
           />
         </div>
