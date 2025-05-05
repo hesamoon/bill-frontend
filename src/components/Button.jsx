@@ -1,20 +1,18 @@
 /* eslint-disable react/prop-types */
-function Button({
-  value,
-  onClick,
-  disable,
-  onlyBorder = false,
-  withoutLoader = false,
-}) {
+function Button({ value, onClick, disable, type, withoutLoader = false }) {
   return (
     <button
       className={`${
-        onlyBorder
+        type === "outlined"
           ? "border border-primary text-primary hover:bg-[#176FCF1a]"
-          : `text-white ${
+          : type === "filled"
+          ? `text-white ${
               disable ? "bg-[#176FCFa1]" : "bg-primary"
             } hover:bg-[#176FCFa1]`
-      }  flex items-center gap-2 transition-all ease-linear duration-200 text-center text-base py-2.5 px-8 rounded-xl`}
+          : type === "text"
+          ? "text-primary"
+          : null
+      } flex items-center gap-2 transition-all ease-linear duration-200 text-center text-base py-2.5 px-8 rounded-xl`}
       disabled={disable}
       onClick={onClick}
     >
