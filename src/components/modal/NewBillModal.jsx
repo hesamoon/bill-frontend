@@ -24,6 +24,8 @@ function NewBillModal({
   setData,
   billInfoData,
   setBillInfoData,
+  previewClickHandler,
+  initStep,
   onClose,
 }) {
   const queryClient = useQueryClient();
@@ -90,7 +92,7 @@ function NewBillModal({
       },
     });
 
-  const [currStep, setCurrStep] = useState(steps[0]);
+  const [currStep, setCurrStep] = useState(initStep);
 
   // const handleClose = (event) => {
   //   if (event.target.id === "wrapper") {
@@ -215,19 +217,34 @@ function NewBillModal({
         </div>
 
         {/* footer */}
-        <div className="flex items-center justify-end gap-4 p-4">
-          {currStep.id > 0 && (
+        <div
+          className={`flex items-center ${
+            currStep.id === 3 ? "justify-between" : "justify-end"
+          } gap-2 p-4`}
+        >
+          {currStep.id === 3 && (
             <Button
-              value="مرحله قبل"
-              onlyBorder
-              onClick={() => clickHandler("-")}
+              value="پیش نمایش بارنامه"
+              type="text"
+              onClick={() => previewClickHandler()}
             />
           )}
-          <Button
-            value={currStep.id === 3 ? "آماده سازی جهت چاپ" : "مرحله بعد"}
-            disable={createBillPending}
-            onClick={() => clickHandler("+")}
-          />
+
+          <div className="flex items-center gap-4">
+            {currStep.id > 0 && (
+              <Button
+                value="مرحله قبل"
+                type="outlined"
+                onClick={() => clickHandler("-")}
+              />
+            )}
+            <Button
+              value={currStep.id === 3 ? "آماده سازی جهت چاپ" : "مرحله بعد"}
+              disable={createBillPending}
+              type="filled"
+              onClick={() => clickHandler("+")}
+            />
+          </div>
         </div>
       </div>
     </div>
