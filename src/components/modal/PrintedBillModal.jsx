@@ -86,7 +86,9 @@ function PrintedBillModal({ data, onClose }) {
             </div>
 
             <div className="">
-              <span className="text-[10px] text-low_important">شماره بارنامه:</span>
+              <span className="text-[10px] text-low_important">
+                شماره بارنامه:
+              </span>
               <h5 className="text-black text-sm font-semibold -mt-1">
                 {billNumber}
               </h5>
@@ -409,9 +411,7 @@ function PrintedBillModal({ data, onClose }) {
 
               {/* total price */}
               <div className="grid grid-cols-2 divide-x-4 divide-x-reverse divide-black">
-                <div className="font-bold text-start text-sm p-1">
-                  مبلغ کل
-                </div>
+                <div className="font-bold text-start text-sm p-1">مبلغ کل</div>
                 <div className="relative p-1">
                   <span className="text-low_important text-[10px] absolute top-2 left-1">
                     ريال
@@ -457,7 +457,7 @@ function PrintedBillModal({ data, onClose }) {
           </div>
         </div>
       </div>
-      
+
       <div className="p-4">
         {/* Print Button */}
         <button
